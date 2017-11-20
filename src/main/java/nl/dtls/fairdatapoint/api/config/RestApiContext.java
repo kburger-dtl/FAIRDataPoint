@@ -22,7 +22,6 @@
  */
 package nl.dtls.fairdatapoint.api.config;
 
-
 import static org.eclipse.rdf4j.rio.RDFFormat.TURTLE;
 import java.io.IOException;
 import java.util.List;
@@ -81,13 +80,14 @@ import org.springframework.http.MediaType;
 @Import(ApplicationSwaggerConfig.class)
 @ComponentScan(basePackages = "nl.dtls.fairdatapoint.*")
 public class RestApiContext extends WebMvcConfigurerAdapter {
-
-    private final static Logger LOGGER
-            = LogManager.getLogger(RestApiContext.class);
+    private final static Logger LOGGER = LogManager.getLogger(RestApiContext.class);
 
     @Autowired
     private List<AbstractMetadataMessageConverter<?>> metadataConverters;
-
+    
+    @Value("${gui.theme:default}")
+    private String guiTheme;
+    
     private final ValueFactory valueFactory = SimpleValueFactory.getInstance();
 
     @Override
@@ -202,8 +202,8 @@ public class RestApiContext extends WebMvcConfigurerAdapter {
                 return literal.getLabel();
             }
         });
-
-        viewResolver.setPrefix("/WEB-INF/templates/");
+        
+        viewResolver.setPrefix("/WEB-INF/templates/" + guiTheme + "/");
         viewResolver.setSuffix(".hbs");
         viewResolver.setFailOnMissingFile(false);
 
