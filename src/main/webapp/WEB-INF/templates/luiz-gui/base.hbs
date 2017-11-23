@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+        <link rel="stylesheet" href="/fairdatapoint/css/luiz-gui/style.css"/>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        <script src="/fairdatapoint/js/n3-browser.min.js"></script>
+        <script src="/fairdatapoint/js/luiz-gui/script.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <!-- repository header and title -->
+            <div class="row repo-header">
+                <div class="col-3">
+                    <img src="/fairdatapoint/img/DTL_short-full.jpeg" style="width:250px;height:96px;" />
+                </div>
+                <div class="col align-self-center">
+                    <h1>{{literal metadata.title}}</h1>
+                </div>
+            </div>
+        {{#block "content"}}
+            <p>loading content...</p>
+        {{/block}}
+        </div>
+
+        <footer>
+            <div class="container">
+                <img class="float-left"  style="width:100px;height:40px;"/>
+                <img src="/fairdatapoint/img/go-fair.png" class="float-right" style="width:155px;height:40px;"/>
+            </div>
+        </footer>
+    </body>
+</html>

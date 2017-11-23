@@ -1,0 +1,54 @@
+{{#partial "content"}}
+<!-- breadcrumb -->
+<nav>
+    <ol class="breadcrumb"></ol>
+</nav>
+
+<h2>{{literal metadata.title}}</h2>
+
+<div class="text-center meta-row">
+    <a href="{{metadata.publisher.uri}}">{{literal metadata.publisher.name}}</a>
+</div>
+
+<!-- description -->
+<p>{{literal metadata.description}}</p>
+
+<div class="row meta-row">
+    <div class="col text-left">
+        <span>Published on {{literal metadata.issued}}</span>
+    </div>
+    <div class="col text-center">
+        <a href="{{metadata.license}}"><span>License</span></a>
+    </div>
+    <div class="col text-right">
+        <span>Version: {{literal metadata.version}}</span>
+    </div>
+</div>
+
+<!-- distributions -->
+<div class="row justify-content-center">
+    {{#metadata.distributions}}
+    <div class="col text-center">
+        <script>createDistIcon("{{.}}");</script>
+    </div>
+    {{/metadata.distributions}}
+</div>
+
+<!-- keywords -->
+<div class="row meta-row">
+    <div class="col-1">
+        <span>Keywords:</span>
+    </div>
+    <div class="col">
+        {{#metadata.themes}}
+        <span>{{.}}</span>
+        {{/metadata.themes}}
+    </div>
+</div>
+
+<script>
+populateBreadcrumb("{{metadata.parentURI}}");
+</script>
+{{/partial}}
+
+{{> base}}

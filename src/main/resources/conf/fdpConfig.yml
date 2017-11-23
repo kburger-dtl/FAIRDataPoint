@@ -19,4 +19,4 @@ metadataProperties:
 fairSearch:
     fdpSubmitUrl: https://search-dev.fair-dtls.surf-hosted.nl/searchserver/fse/submitFdp
 gui:
-    theme: default
+    theme: luiz-gui

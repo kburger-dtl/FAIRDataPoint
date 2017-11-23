@@ -1,0 +1,73 @@
+{{#partial "content"}}
+<!-- repository description -->
+{{#if metadata.description}}
+<p>{{literal metadata.description}}</p>
+{{/if}}
+
+<!-- repository timestamp and license metadata -->
+<div class="row meta-row">
+    <div class="col text-left">
+        Issued: {{literal metadata.issued}}
+    </div>
+    <div class="col text-center"><a href="{{metadata.license}}">license</a></div>
+    <div class="col text-right">Modified: {{literal metadata.modified}}</div>
+</div>
+
+<!-- repository publisher -->
+<div class="mx-auto text-center">
+    <span>Responsible organisation:</span> <a href="{{metadata.publisher.uri}}">{{literal metadata.publisher.name}}</a>
+</div>
+
+<!-- divider between repository and catalog info -->
+<hr/>
+
+<div>
+    <h1 class="mx-auto text-center">Catalog(s)</h1>
+</div>
+
+<!-- catalog boxes -->
+<div id="catalog-boxes" class="row justify-content-between">
+</div>
+
+<div id="catalog-section" style="display:none;">
+    <hr/>
+    
+    <div>
+        <h2 class="mx-auto text-center" id="catalog-title"></h2>
+    </div>
+    
+    <p id="catalog-desc"></p>
+    
+    <div class="row meta-row">
+        <div class="col text-left">Issued: <span id="catalog-issued"></span></div>
+        <div class="col text-center"><a href>license</a></div>
+        <div class="col text-right">Last modified: <span id="catalog-modified"></div>
+    </div>
+    
+    <h2>Datasets</h2>
+    <!-- dataset boxes -->
+    <div id="dataset-boxes" class="row"></div>
+</div>
+
+<script>
+$("div#catalog-section").hide();
+
+{{#metadata.catalogs}}
+$.get({
+    url: "{{.}}",
+    headers: {
+        Accept: "application/ld+json"
+    },
+    success: function(data) {
+        jQuery.each(data['@graph'], function(index, graph) {
+            if (graph['@id'] === "{{.}}") {
+                addCatalogBox(graph);
+            }
+        });
+    }
+});
+{{/metadata.catalogs}}
+</script>
+{{/partial}}
+
+{{> base}}
